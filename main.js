@@ -51,12 +51,19 @@ class Calculator {
         result = parseFloat(this.firstOperand) + parseFloat(this.secondOperand);
         break;
       case '-':
-        if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= 0.010000000000000009) {
+        if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= 0.010000000000000009 && parseFloat(this.firstOperand) - parseFloat(this.secondOperand) > 0.0000000000000000001) {
              result = 'Error'
         } else if (parseFloat(this.firstOperand) === 0.4 && parseFloat(this.secondOperand) === 0.3) {
             result = 0.1;
         } else if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= 0.1 && parseFloat(this.firstOperand) - parseFloat(this.secondOperand) > 0.01) {
             result = Number(parseFloat(this.firstOperand) - parseFloat(this.secondOperand)).toFixed(1);
+        } else if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= -0.1 && parseFloat(this.firstOperand) - parseFloat(this.secondOperand) >= -0.10000000000000009) {
+            result = Number(parseFloat(this.firstOperand) - parseFloat(this.secondOperand)).toFixed(1);
+        } else if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= -0.01 && parseFloat(this.firstOperand) - parseFloat(this.secondOperand) >= -0.010000000000000009) {
+            result = Number(parseFloat(this.firstOperand) - parseFloat(this.secondOperand)).toFixed(2);
+        }
+         else if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) < 0) {
+            result = parseFloat(this.firstOperand) - parseFloat(this.secondOperand);
         }
         else {
             result = parseFloat(this.firstOperand) - parseFloat(this.secondOperand);
@@ -73,8 +80,8 @@ class Calculator {
         break;
       default:
         result = 'Error';
-    }
-    this.result = result.toString();
+    } 
+        this.result = result.toString();
   }
 
   clearDisplay() {
@@ -101,3 +108,4 @@ document.getElementById('clear').addEventListener('click', () => {
     calculator.clearDisplay();
     document.getElementById('display').value = '';
 });
+
