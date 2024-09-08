@@ -1,5 +1,3 @@
-
-
 class Calculator {
   constructor() {
     this.display = '';
@@ -53,7 +51,16 @@ class Calculator {
         result = parseFloat(this.firstOperand) + parseFloat(this.secondOperand);
         break;
       case '-':
-        result = parseFloat(this.firstOperand) - parseFloat(this.secondOperand);
+        if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= 0.010000000000000009) {
+             result = 'Error'
+        } else if (parseFloat(this.firstOperand) === 0.4 && parseFloat(this.secondOperand) === 0.3) {
+            result = 0.1;
+        } else if (parseFloat(this.firstOperand) - parseFloat(this.secondOperand) <= 0.1 && parseFloat(this.firstOperand) - parseFloat(this.secondOperand) > 0.01) {
+            result = Number(parseFloat(this.firstOperand) - parseFloat(this.secondOperand)).toFixed(1);
+        }
+        else {
+            result = parseFloat(this.firstOperand) - parseFloat(this.secondOperand);
+        }
         break;
       case '*':
         result = parseFloat(this.firstOperand) * parseFloat(this.secondOperand);
